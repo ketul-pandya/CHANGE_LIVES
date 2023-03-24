@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap'
+        rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap' rel='stylesheet'>
+    <link
+        href='https://fonts.googleapis.com/css2?family=Jockey+One&family=Poppins:wght@100;300;400;500;700&family=Roboto:wght@100;300&display=swap'
+        rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css2?family=Jockey+One&family=Roboto:wght@100;300&display=swap'
+        rel='stylesheet'>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <!-- link awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .header__main {
+            width: 100vw;
+            height: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3rem;
+            background-color: #EDF2F6;
+        }
+
+        .header__main h2 {
+            font-family: 'Jockey One', sans-serif;
+            color: #5C5C5C;
+        }
+
+        .header__main span {
+            font-size: 3rem;
+            font-family: 'Roboto';
+            font-weight: 1000;
+            color: #00C897;
+        }
+
+        ::-webkit-scrollbar {
+            width: 20px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+            border-radius: 20px;
+            border: 6px solid transparent;
+            background-clip: content-box;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #a8bbbf;
+        }
+
+        .container .top {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 800;
+            text-decoration: underline;
+        }
+
+        .heading1,
+        .heading2 {
+            font-size: 30px;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .container {}
+
+        .container .fill-up-small {
+            text-align: center;
+            text-decoration-color: #5C5C5C;
+        }
+
+        .content1 {
+            font-size: 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .discr1,
+        .discr2,
+        .discr3,
+        .discr4 {
+            font-size: 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .name1,
+        .name2,
+        .name3,
+        .name4 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        footer {
+            font-family: 'Jockey One', sans-serif;
+            position: absolute;
+            bottom: -950px;
+            left: 0;
+            right: 0;
+            background: #00D19E;
+            height: auto;
+            width: 100vw;
+            padding-top: 40px;
+            color: #fff;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        /* .footer-content h3 {
+    margin: 10px auto;
+    font-family: sans-serif;
+    font-size: 2.1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: 3rem;
+} */
+
+        .footer h2 {
+            font-family: 'Jockey One', sans-serif;
+            color: #5C5C5C;
+        }
+
+        .footer span {
+            font-size: 3rem;
+            font-family: 'Roboto';
+            font-weight: 1000;
+            color: #00C897;
+        }
+
+        .footer-content p {
+            font-family: sans-serif;
+            max-width: 700px;
+            margin: 10px auto;
+            line-height: 28px;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .socials {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0 3rem 0;
+        }
+
+        .socials li {
+            margin: 0 10px;
+        }
+
+        .socials a {
+            text-decoration: none;
+            color: #fff;
+            border: 1.1px solid white;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .socials a i {
+            font-size: 1.1rem;
+            width: 20px;
+            transition: color .4s ease;
+        }
+
+        .socials a:hover i {
+            color: #049e77;
+            ;
+        }
+
+        .footer-bottom {
+            background: #00D19E;
+            width: 100vw;
+            padding: 20px;
+            padding-bottom: 40px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            float: left;
+            font-size: 14px;
+            word-spacing: 2px;
+            text-transform: capitalize;
+        }
+
+        .footer-bottom p a {
+            color: #ffffff;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .footer-bottom span {
+            text-transform: uppercase;
+            opacity: .4;
+            font-weight: 200;
+        }
+
+        .footer-menu {
+            float: right;
+        }
+
+        .footer-menu ul {
+            display: flex;
+        }
+
+        .footer-menu ul li {
+            padding-right: 10px;
+            display: block;
+        }
+
+        .footer-menu ul li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .footer-menu ul li a:hover {
+            color: #049e77;
+            ;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header__main">
+        <!-- <img src="Rectangle 1.svg" alt="Rectangle" class="rectangle"> -->
+
+        <a href="http://127.0.0.1:8000/" style="text-decoration: none;">
+
+            <h2><span>C</span>hange <span>L</span>ives</h2>
+
+        </a>
+
+
+    </header>
+
+    <svg preserveAspectRatio="none" width="100VW" height="194" viewBox="0 0 1920 194" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <rect width="100VW" height="194" fill="white" />
+        <path
+            d="M514.224 99.3881C607.024 80.3875 696.88 46.3306 789.424 25.6747C921.248 -3.76844 1058.53 -5.547 1190.14 24.9879C1318.05 54.5895 1450.67 126.789 1577.06 163.469C1689.14 196.012 1811.5 209.412 1920 168.752V0H0V48.162C163.945 116.582 341.781 134.298 514.224 99.3881Z"
+            fill="#EDF2F6" />
+    </svg>
+
+    <div class="container">
+        <div class="top">
+            About us <br> <br>
+        </div>
+
+        <div class="fill-up">
+            <div class="fill-up-small">
+                CURIOUS? <br> Get to know about us and relive our journey <br> Get acquainted with our team and
+                understand how we work and proceed towards success. <br><br><br>
+            </div>
+            <div class="heading1">
+                Our Goal statement:
+            </div>
+
+            <div class="content1">
+                &#x2192 The CONFAB family believes in connecting people through the simple medium of internet. We
+                believe that people of the same organisation should have no communication gap between them. We respect
+                everyone’s privacy. And that’s why we work to achieve
+                that goal. <br><br> &#x2192 CONFAB is the website where we connect people of the same organisations.
+                People connect with each other without the risk of their privacy as the user on our website are
+                completely anonymous.
+                <br><br><br>
+
+            </div>
+            <div class="heading2">
+                Our Team: <br>
+            </div>
+
+            <div class="content-2">
+                <div class="name1">
+                    1)
+                    <a href="https://www.linkedin.com/in/krishnan-pandya-685950237/"
+                        style="text-decoration:none ; color:black"> Krishnan Pandya</a>
+
+
+
+                </div>
+                <div class="discr1">
+                    <p> &#x2192 Krishnan Pandya is the Co-founder of CONFAB, and also the Founder and CEO of Spade. He
+                        is an upcoming entrepreneur with a quite a few experiences with businesses. He is also best
+                        gamers out there. He is Silver-1 in Valorant.
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="content-3">
+                <div class="name2">
+
+                    <a href="https://www.linkedin.com/in/ayush-luhar-532698228/"
+                        style="text-decoration:none ; color:black"> Ayush Luhar</a>
+
+
+                </div>
+                <div class="discr2">
+                    <p> &#x2192 Ayush Luhar is the Co-founder of CONFAB. He is the sharpest mind CONFAB has to offer, he
+                        is known as the “Light Yagami of the CONFAB”. He has been the support since the beginning of the
+                        CONFAB.
+
+                    </p>
+
+                </div>
+            </div>
+            <div class="content-4">
+                <div class="name3">
+
+                    <a href="https://www.linkedin.com/in/jinesh-dolia-875706233/"
+                        style="text-decoration:none ; color:black">Jinesh Dolia</a>
+
+
+                </div>
+                <div class="discr3">
+                    <p> &#x2192 Jinesh Dolia is the Chief operating officer of CONFAB. He has been the backbone of
+                        CONFAB. Jinesh was the “fire” in the CONFAB from the famous Akbar-Birble story called “Birbal’s
+                        Khicadi”.
+                    </p>
+                </div>
+            </div>
+            <div class="content-5">
+                <div class="name4">
+                    4)
+                    <a href="https://www.linkedin.com/in/jash-karangiya-2802aa228/"
+                        style="text-decoration:none ; color:black">Jash Karangiya</a>
+
+                </div>
+                <div class="discr4">
+                    <p> &#x2192 Jash Karangiya is the Executive director of CONFAB. He is the leader of CONFAB, handles
+                        conflicts in teams and a great presenter. In short he is the "Erlich Bachman of CONFAB". He also
+                        have highest connections in LinkedIn.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <footer>
+        <div class="footer-content">
+            <h3><span>C</span>onfab</h3>
+
+            <p>CONFAB is a Q&A forum where people of the same organisation can interact with each other with complete
+                anonymity. </p>
+
+            <ul class="socials">
+                <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2022 <a href="#">CONFAB</a> </p>
+            <div class="footer-menu">
+                <ul class="f-menu">
+                    <li style="list-style: none;"><a href="/" style="color: black !important;padding: 0;">Home</a></li>
+                    <li style="list-style: none;"><a href="/about_us"
+                            style="color: black !important;padding: 0;">About</a></li>
+                    <li style="list-style: none;"><a href="/contactus"
+                            style="color: black !important;padding: 0;">Contact Us</a></li>
+                    <li style="list-style: none;"><a href="/feedback"
+                            style="color: black !important;padding: 0;">Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </footer>
+</body>
+
+</html>

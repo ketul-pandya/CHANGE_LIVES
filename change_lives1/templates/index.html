@@ -1,0 +1,403 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6f8d1ddd75.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css'%}">
+  <link rel="stylesheet" href="{% static 'css/index.css'%}">
+<style>
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+
+<body>
+  <!-- <img src="{% static 'images/prototype (6).png'%}" style="ba" alt=""> -->
+  <!-- navvar section -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/admin">
+        <img class="logo" src="{% static '/images/logo.png'%}" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-4">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">Fundraisers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/registration">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact us</a>
+          </li>
+        </ul>
+                {% if user.is_authenticated%}
+        <div class="dropdown">
+                        <button class="dropbtn">welcome {{request.user}}</button>
+                        <div class="dropdown-content">
+                            <a href="/logout">logout</a>
+                        </div>
+                    </div>
+        {% else %}
+        <ul class="navbar-nav">
+          <button class="btn"  onclick="signup_function()">Log In</button>
+        </ul>
+
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}{% endif %}
+  <!-- image and text section -->
+  <div class="img-sec" id="blurs" style="color: aliceblue;">
+    <img class="img1" src="{% static '/images/ketto.webp'%}" alt="ok">
+    <div class="kavan">
+      <pre class="display-txt">
+              Finding a place to raise money for your problem?
+              We're there for you,you are at the right place.
+              <span class="trusted">
+              Most trusted and transparent fundraising 
+              platform.
+              </span>  
+          </pre>
+    </div>
+  </div>
+  <!-- Fundraiser heading -->
+  <div class="Fundraisers">
+    <h1 class="heading1">Fundraisers</h1>
+    <h4 class="heading4">View the fundraisers that are most active right now</h3>
+  </div>
+
+  <div class="row" id="blur">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card card1" style="width: 20rem;">
+        <img src="{% static '/images/child2.png'%}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">NGO title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <!-- <li class="list-group-item">A third item</li> -->
+        </ul>
+        <div class="card-body">
+          <button class="btn" id="show-login" onclick="toggle()">Donate</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card card1" style="width: 20rem;">
+        <img src="{% static '/images/child2.png'%}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">NGO title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <!-- <li class="list-group-item">A third item</li> -->
+        </ul>
+        <div class="card-body">
+          <button class="btn" data-target="#login" data-toggle="modal" onclick="toggle()">Donate</button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6  col-sm-12">
+      <div class="card card1" style="width: 20rem;">
+        <img src="{% static '/images/child2.png'%}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">NGO title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">An item</li>
+
+          <li class="list-group-item">A second item</li>
+          <!-- <li class="list-group-item">A third item</li> -->
+        </ul>
+        <div class="card-body">
+          <button class="btn" onclick="toggle()">Donate</button>
+          <!-- <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  </div> -->
+  </div>
+  <form action="/signup" method="post" autocomplete="on">
+    {% csrf_token%}
+    <div id="popup">
+      <div class="close-btn" onclick="toggle()">&times;</div>
+      <div class="form">
+        <h2>Sign Up</h2>
+
+        <div class="form-element">
+          <label for="username">Username</label>
+          <input type="text" name='userr' id="userr" placeholder="Enter username" >
+        </div>
+
+        <div class="form-element">
+          <label for="email">Email Id</label>
+          <input type="text" name='emaill' id="email" placeholder="Enter email">
+        </div>
+
+        <div class="form-element">
+          <label for="password">Password</label>
+          <input type="password" name='password' id="password" placeholder="Enter password">
+        </div>
+
+        <div class="form-element">
+          <input type="checkbox" id="remember-me">
+          <label for="remember-me">Remember me</label>
+        </div>
+
+        <div class="form-element">
+          <button>Sign Up</button>
+        </div>
+
+        <div class="form-element">
+          <a href="#">Forgot password?</a>
+        </div>
+
+      </div>
+
+    </div>
+  </form>
+
+  <form action="/login" method="post" autocomplete="on">
+    {% csrf_token%}
+    <div id="popups">
+      <div class="close-btns" onclick="signup_function()">&times;</div>
+      <div class="forms">
+        <h2>Log In</h2>
+        <div class="form-elements">
+          <label for="username">Username</label>
+          <input type="text" name='user_login' id="userr" placeholder="Enter username">
+        </div>
+
+        <div class="form-elements">
+          <label for="password">Password</label>
+          <input type="password" name='password_login' id="password" placeholder="Enter password">
+        </div>
+
+        <div class="form-elements">
+          <button>Log In</button>
+        </div>
+
+        <div class="form-elements">
+          <a href="#">Forgot password?</a>
+        </div>
+
+      </div>
+
+    </div>
+  </form>
+
+
+  <div class="Success">
+    <h1 class="heading1">Success Stories</h1>
+  </div>
+
+  <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static '/images/chandler1.png'%}" class="d-block friends" alt="...">
+        <p class="para-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores dolorum dicta
+          temporibus ad laudantium perferendis, repellat eaque optio quisquam blanditiis enim. Cupiditate et voluptas
+          veritatis, quo amet earum quae fugit omnis recusandae hic, officiis facere a, dolorem ab neque nihil pariatur
+          culpa error unde expedita velit dolore consequuntur? Cupiditate unde cum necessitatibus repellendus eveniet
+          nam.</p>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static '/images/chandler1.png'%}" class="d-block friends" alt="...">
+        <p class="para-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus est illo tempora.
+          Praesentium labore eligendi atque voluptatibus dolorem, quae eum impedit ducimus vitae qui enim. Deleniti cum
+          quidem omnis optio inventore, eius perspiciatis voluptatum quam sit rem vitae consectetur nihil eum dolor id
+          magni? Repudiandae tempore temporibus delectus laudantium eum ex, placeat non esse distinctio!</p>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static '/images/chandler1.png'%}" class="d-block friends " alt="...">
+        <p class="para-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet vel nulla pariatur earum
+          asperiores ad iusto atque vitae tempore, vero consequuntur facere reprehenderit? Dolorum possimus eos, libero
+          quisquam cum ad dicta quae, assumenda nulla officiis quas recusandae dolor excepturi provident. Sint tempore
+          reiciendis dolor laboriosam animi ut temporibus harum, fugiat corrupti tempora nam. Eius, voluptate!</p>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the upcoming
+            programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code
+            wants to be simple. We will help programmers build up concepts in different programming languages that
+            include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+        </div>
+
+        <!-- <div class="col-xs-6 col-md-3">
+              <h6>Categories</h6>
+              <ul class="footer-links">
+                <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+                <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+                <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+                <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+                <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+                <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+              </ul>
+            </div> -->
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/about/">About Us</a></li>
+            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+            <a href="#">Change Lives</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggle() {
+      var blur = document.getElementById("blur").classList;
+      blur.toggle("active");
+      var popup = document.getElementById("popup").classList;
+      popup.toggle("active");
+    };
+    function signup_function(){
+      var blur= document.getElementById("blurs").classList;
+      blur.toggle("actives");
+      var popups=document.getElementById("popups").classList;
+      popups.toggle("actives");
+    }
+  </script>
+</body>
+
+</html>
