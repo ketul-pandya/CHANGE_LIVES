@@ -69,22 +69,24 @@ def success(request):
     return render(request,'success.html')   
         
     
+# old payment method
 
-def payment(request):
-    stripe.api_key=settings.STRIPE_PRIVATE_KEY
-    session=stripe.checkout.Session.create(payment_method_types=['card'],
-            line_items=[{
-                'price':'price_1Mn3zNSB9lTxkE9Qe0S0uTun',
-                'quantity':1,
-            }],
-            mode='payment',
-            success_url=request.build_absolute_uri(reverse('contact')),
-            cancel_url=request.build_absolute_uri(reverse('index')),)
-    context={
-        'session_id':session.id,
-        'stripe_public_key':settings.STRIPE_PUBLIC_KEY
-        }
-    return render(request,'payment.html',context)
+
+# def payment(request):
+#     stripe.api_key=settings.STRIPE_PRIVATE_KEY
+#     session=stripe.checkout.Session.create(payment_method_types=['card'],
+#             line_items=[{
+#                 'price':'price_1Mn3zNSB9lTxkE9Qe0S0uTun',
+#                 'quantity':1,
+#             }],
+#             mode='payment',
+#             success_url=request.build_absolute_uri(reverse('contact')),
+#             cancel_url=request.build_absolute_uri(reverse('index')),)
+#     context={
+#         'session_id':session.id,
+#         'stripe_public_key':settings.STRIPE_PUBLIC_KEY
+#         }
+#     return render(request,'payment.html',context)
 
 def registrationn(request):
     if request.method=="POST":
@@ -108,3 +110,58 @@ def registrationn(request):
         
     return render(request,'registration.html')
     
+    
+    
+def payment(request):
+    stripe.api_key = settings.STRIPE_PRIVATE_KEY
+
+    if request.method == "POST":
+            amount = int(request.POST["amount"]) 
+                #Create customer
+            try:
+                customer = stripe.Customer.create(
+			                           email=request.POST.get("email"),
+			                           name=request.POST.get("full_name"),
+			                           description="Test donation",
+                                    source=request.POST['stripeToken']
+			                           )
+
+            except stripe.error.CardError as e:
+                return HttpResponse("<h1>There was an error charging your card:</h1>"+str(e))     
+
+            except stripe.error.RateLimitError as e:
+                     # handle this e, which could be stripe related, or more generic
+                return HttpResponse("<h1>Rate error!</h1>")
+
+            except stripe.error.InvalidRequestError as e:
+                return HttpResponse("<h1>Invalid requestor!</h1>")
+
+            except stripe.error.AuthenticationError as e:  
+                return HttpResponse("<h1>Invalid API auth!</h1>")
+
+            except stripe.error.StripeError as e:  
+                return HttpResponse("<h1>Stripe error!</h1>")
+
+            except Exception as e:  
+                pass  
+
+
+
+                #Stripe charge 
+            charge = stripe.Charge.create(
+                       customer=customer,
+			              amount=int(amount)*100,
+			              currency='usd',
+			              description="Test donation"
+                     ) 
+            transRetrive = stripe.Charge.retrieve(
+                           charge["id"],
+                           api_key="sk_test_51Mn3vTSB9lTxkE9QXNVfmKrpK2Biav5SxinzixgQOgxXjkODLvjCYBiCkhJctdE0G6i3HTU0rPqzcan1GtJiQOUx001bFFtbDl"
+                        )
+            charge.save() # Uses the same API Key.
+            return redirect("success")
+
+                   
+
+
+    return render(request, "payment.html")

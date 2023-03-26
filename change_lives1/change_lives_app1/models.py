@@ -34,3 +34,6 @@ class Registration(models.Model):
     password=models.CharField(max_length=25)
     author_name=models.CharField(max_length=100)
     
+    def __str__(self):
+        return self.name
+    
