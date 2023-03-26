@@ -148,13 +148,13 @@ def payment(request):
 
 
                 #Stripe charge 
-            charge = stripe.Charge.create(
+            charge = stripe.PaymentIntent.create(
                        customer=customer,
 			              amount=int(amount)*100,
-			              currency='usd',
+			              currency='inr',
 			              description="Test donation"
                      ) 
-            transRetrive = stripe.Charge.retrieve(
+            transRetrive = stripe.PaymentIntent.retrieve(
                            charge["id"],
                            api_key="sk_test_51Mn3vTSB9lTxkE9QXNVfmKrpK2Biav5SxinzixgQOgxXjkODLvjCYBiCkhJctdE0G6i3HTU0rPqzcan1GtJiQOUx001bFFtbDl"
                         )
