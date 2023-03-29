@@ -2,7 +2,7 @@ from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
-from change_lives_app1.models import Signup,Contact,Registration
+from change_lives_app1.models import Signup,Contact,Registration,Payment_model
 from django.conf import settings
 import stripe
 from django.urls import reverse
@@ -116,8 +116,14 @@ def payment(request):
     stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
     if request.method == "POST":
-            amount = int(request.POST["amount"]) 
+            amount = int(request.POST["amount_pay"]) 
                 #Create customer
+            amount_payment=request.POST.get('amount_pay')
+            email_payment=request.POST.get('email')
+            full_name_payment=request.POST.get('full_name')
+            
+            paymentt_gateway=Payment_model(amount=amount_payment,email=email_payment,name=full_name_payment)
+            
             try:
                 customer = stripe.Customer.create(
 			                           email=request.POST.get("email"),
@@ -159,9 +165,13 @@ def payment(request):
                            api_key="sk_test_51Mn3vTSB9lTxkE9QXNVfmKrpK2Biav5SxinzixgQOgxXjkODLvjCYBiCkhJctdE0G6i3HTU0rPqzcan1GtJiQOUx001bFFtbDl"
                         )
             charge.save() # Uses the same API Key.
+            paymentt_gateway.save()
             return redirect("success")
 
                    
 
 
-    return render(request, "payment.html")
+    return render(request, "p.html")
+
+def fundraiser(request):
+    return render(request,"fundraiser.html")

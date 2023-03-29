@@ -37,3 +37,10 @@ class Registration(models.Model):
     def __str__(self):
         return self.name
     
+class Payment_model(models.Model):
+    amount=models.IntegerField(max_length=10)
+    email=models.EmailField(max_length=50)
+    name=models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.name

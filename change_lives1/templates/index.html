@@ -30,48 +30,50 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/index.css'%}">
   <link rel="stylesheet" href="{% static 'css/index.css'%}">
-<style>
-        .dropbtn {
-            background-color: #04AA6D;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-        }
+  <style>
+    .dropbtn {
+      background-color: #9eee9c;
+      color: black;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      font-family: 'PT Serif', serif;
+      font-size: 1rem;
+    }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
 
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
 
-        .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
-        }
-    </style>
+    .dropdown:hover .dropbtn {
+      background-color: #9eee9c;
+    }
+  </style>
 </head>
 
 <body>
@@ -91,7 +93,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-4">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">Fundraisers</a>
+            <a class="nav-link " aria-current="page" href="/fundraiser">Fundraisers</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Events</a>
@@ -108,17 +110,21 @@
           <li class="nav-item">
             <a class="nav-link" href="/contact">Contact us</a>
           </li>
-        </ul>
-                {% if user.is_authenticated%}
+        </ul>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+        {% if user.is_authenticated%}
         <div class="dropdown">
-                        <button class="dropbtn">welcome {{request.user}}</button>
-                        <div class="dropdown-content">
-                            <a href="/logout">logout</a>
-                        </div>
-                    </div>
+          <button class="dropbtn">welcome {{request.user}}</button>
+          <div class="dropdown-content">
+            <a href="/logout">logout</a>
+          </div>
+        </div>
         {% else %}
         <ul class="navbar-nav">
-          <button class="btn"  onclick="signup_function()">Log In</button>
+          <button class="btn" onclick="signup_function()">Log In</button>
         </ul>
 
         {% endif %}
@@ -154,7 +160,7 @@
   </div>
 
   <div class="row" id="blur">
-    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="col-lg-4 col-md-6 col-sm-12 respons">
       <div class="card card1" style="width: 20rem;">
         <img src="{% static '/images/child2.png'%}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -174,7 +180,7 @@
       </div>
     </div>
 
-    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="col-lg-4 col-md-6 col-sm-12 respons">
       <div class="card card1" style="width: 20rem;">
         <img src="{% static '/images/child2.png'%}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -194,7 +200,7 @@
       </div>
     </div>
 
-    <div class="col-lg-4 col-md-6  col-sm-12">
+    <div class="col-lg-4 col-md-6  col-sm-12 respons">
       <div class="card card1" style="width: 20rem;">
         <img src="{% static '/images/child2.png'%}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -227,7 +233,7 @@
 
         <div class="form-element">
           <label for="username">Username</label>
-          <input type="text" name='userr' id="userr" placeholder="Enter username" >
+          <input type="text" name='userr' id="userr" placeholder="Enter username">
         </div>
 
         <div class="form-element">
@@ -391,10 +397,10 @@
       var popup = document.getElementById("popup").classList;
       popup.toggle("active");
     };
-    function signup_function(){
-      var blur= document.getElementById("blurs").classList;
+    function signup_function() {
+      var blur = document.getElementById("blurs").classList;
       blur.toggle("actives");
-      var popups=document.getElementById("popups").classList;
+      var popups = document.getElementById("popups").classList;
       popups.toggle("actives");
     }
   </script>
