@@ -2,10 +2,12 @@ from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
-from change_lives_app1.models import Signup,Contact,Registration,Payment_model
+from change_lives_app1.models import Signup,Contact,Registration,Payment_model,Patient_Model
 from django.conf import settings
 import stripe
 from django.urls import reverse
+from django.core.files.storage import FileSystemStorage
+
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -33,7 +35,6 @@ def loginn(request):
     if request.method=='POST':
         user=request.POST.get('user_login')
         password=request.POST.get('password_login')
-        print(password)
         user =authenticate(username=user
                            ,password=password)
         
@@ -47,6 +48,20 @@ def loginn(request):
 def logoutt(request):
     logout(request)
     return redirect('index')
+
+def ngo_login(request):
+    if request.method=='POST':
+        user=request.POST.get('ngo_user')
+        password=request.POST.get('ngo_password')
+        user =authenticate(username=user
+                           ,password=password)
+        
+        if user is not None:
+            login(request,user)
+            return redirect('patient')
+        else:
+            return redirect('404')
+    return render(request,'login_of_ngo.html')
 
 def signupp(request):
     if request.method=='POST':
@@ -63,10 +78,14 @@ def signupp(request):
         # signupp.save()
             myuser.save()
         messages.success(request,"your data has been saved")
-    return render(request,'payment.html')
+    return render(request,'index.html')
 
 def success(request):
-    return render(request,'success.html')   
+    data=Registration.objects.all()
+    context={
+        'data':data,
+    }
+    return render(request,'success.html',context)   
         
     
 # old payment method
@@ -88,25 +107,37 @@ def success(request):
 #         }
 #     return render(request,'payment.html',context)
 
+
 def registrationn(request):
     if request.method=="POST":
         name=request.POST.get('name')
         registration_no=request.POST.get('registration_no')
         phone_no=request.POST.get('phone_no')
         state=request.POST.get('state')
-        document=request.POST.get('document')
+        upload_file=request.POST.get('photo')
         email=request.POST.get('email_regist')
         password=request.POST.get('password_regist')
         author_name=request.POST.get('author_name')
+        print(upload_file)
         
-        registration=Registration(name=name,registration_no=registration_no,phone_no=phone_no,state=state,document=document,email=email,password=password,author_name=author_name)
-        registration.save()
+        
+        ngo_user=User.objects.create(username=name,email=email)
+        ngo_user.set_password(password)
+        
+        registration=Registration(name=name,registration_no=registration_no,phone_no=phone_no,state=state,document=upload_file,email=email,password=password,author_name=author_name)
+        
+        
+        if ngo_user is not None:
+            login(request,ngo_user)
+
+            registration.save()
+            ngo_user.save()
         
         if registration is not None:
             messages.success(request,'Your registration is succefully completed!!')
-            return render(request,'index.html')
+            return redirect('patient')
         else:
-            return render(request,'about.html')
+            return render(request,'index.html')
         
     return render(request,'registration.html')
     
@@ -168,10 +199,35 @@ def payment(request):
             paymentt_gateway.save()
             return redirect("success")
 
-                   
-
-
     return render(request, "p.html")
 
+
+
 def fundraiser(request):
-    return render(request,"fundraiser.html")
+    fundraiser_data=Patient_Model.objects.all()
+    context={'fundraiser_data':fundraiser_data}
+    return render(request,"fundraiser.html",context)
+
+
+
+def patien(request):
+    if request.method=='POST':
+        name=request.POST.get('name')
+        image=request.POST.get('image')
+        amount_to_be_raised=request.POST.get('amount')
+        message=request.POST.get('message')
+
+        patientt=Patient_Model(name=name,image=image,amount=amount_to_be_raised,message=message)
+        
+        patientt.save()
+        
+        if patientt is not None:
+            return render(request,'index.html')
+        else:
+            return render(request,'404.html')
+        
+    return render(request,'patient.html')
+
+
+def error404(request):
+    return render(request,'404.html')

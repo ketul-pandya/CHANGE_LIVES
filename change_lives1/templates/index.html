@@ -101,9 +101,15 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Shop</a>
           </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="/patient">Patient_details</a>
+          </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" href="/registration">Register</a>
           </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="/about">About us</a>
           </li>
@@ -114,10 +120,10 @@
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+         
         {% if user.is_authenticated%}
         <div class="dropdown">
-          <button class="dropbtn">welcome {{request.user}}</button>
+          <button class="dropbtn">Welcome {{request.user}}</button>
           <div class="dropdown-content">
             <a href="/logout">logout</a>
           </div>
@@ -173,10 +179,15 @@
           <li class="list-group-item">A second item</li>
           <!-- <li class="list-group-item">A third item</li> -->
         </ul>
+        {% if user.is_authenticated %}
+        <div class="card-body">
+          <button class="btn" id="show-login" onclick="toggle()"><a href="/fundraiser">Payment</a> </button>
+        </div>
+        {% else %}
         <div class="card-body">
           <button class="btn" id="show-login" onclick="toggle()">Donate</button>
         </div>
-
+        {% endif %}
       </div>
     </div>
 
@@ -193,10 +204,15 @@
           <li class="list-group-item">A second item</li>
           <!-- <li class="list-group-item">A third item</li> -->
         </ul>
+        {% if user.is_authenticated %}
         <div class="card-body">
-          <button class="btn" data-target="#login" data-toggle="modal" onclick="toggle()">Donate</button>
-
+          <button class="btn" id="show-login" onclick="toggle()"><a href="/fundraiser">Payment</a> </button>
         </div>
+        {% else %}
+        <div class="card-body">
+          <button class="btn" id="show-login" onclick="toggle()">Donate</button>
+        </div>
+        {% endif %}
       </div>
     </div>
 
@@ -214,11 +230,15 @@
           <li class="list-group-item">A second item</li>
           <!-- <li class="list-group-item">A third item</li> -->
         </ul>
+        {% if user.is_authenticated %}
         <div class="card-body">
-          <button class="btn" onclick="toggle()">Donate</button>
-          <!-- <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a> -->
+          <button class="btn" id="show-login" onclick="toggle()"><a href="/fundraiser">Payment</a> </button>
         </div>
+        {% else %}
+        <div class="card-body">
+          <button class="btn" id="show-login" onclick="toggle()">Donate</button>
+        </div>
+        {% endif %}
       </div>
     </div>
   </div>

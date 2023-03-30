@@ -146,7 +146,7 @@
 
                 <div class="input-box">
                     <span class="details">Registration no.</span>
-                    <input type="text" name="registration_no" placeholder="Enter Registration no." required>
+                    <input type="number" name="registration_no" placeholder="Enter Registration no." required>
                 </div>
 
                 <div class="input-box">
@@ -161,7 +161,8 @@
 
                 <div class="input-box">
                     <span class="details">Documents</span>
-                    <input type="file" name="document" placeholder="Enter Documents" required>
+                    <input type="file" name="photo" placeholder="Enter Documents" enctype="multipart/form-data"
+                        required>
                 </div>
 
                 <div class="input-box">
@@ -184,6 +185,9 @@
             </div>
 
         </form>
+        <a href="/login_of_ngo">
+            <h4>Have You already registered?</h4>
+        </a>
     </div>
 </body>
 

@@ -142,3 +142,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_PUBLIC_KEY='pk_test_51Mn3vTSB9lTxkE9Qg9qJEXyZpE2227HklWNepD405zCJc6nPXaJhVIB1dkYHhpL7DO5nIn7qERyO6UQMUQIz4vzN0049hoXUNK',
 STRIPE_PRIVATE_KEY='sk_test_51Mn3vTSB9lTxkE9QXNVfmKrpK2Biav5SxinzixgQOgxXjkODLvjCYBiCkhJctdE0G6i3HTU0rPqzcan1GtJiQOUx001bFFtbDl'
+
+import os
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL='/media/images/'

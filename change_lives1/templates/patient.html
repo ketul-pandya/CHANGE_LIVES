@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+
+    <title>Contact Form #7</title>
+
+    <style>
+      body {
+  font-family: "Roboto", sans-serif;
+  background-color: #fff;
+  line-height: 1.9;
+  color: #8c8c8c;
+  position: relative; }
+  body:before {
+    z-index: -1;
+    position: absolute;
+    height: 50vh;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #8bbabb; }
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Roboto", sans-serif;
+  color: #000; 
+}
+
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; }
+  a, a:hover {
+    text-decoration: none !important; }
+
+.text-black {
+  color: #000; }
+
+.content {
+  padding: 7rem 0; }
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 900; }
+
+.form-control {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
+  background: none;
+  font-size: 18px;
+ }
+  .form-control:active, .form-control:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #000; }
+
+.col-form-label {
+  color: #000;
+  font-size: 20px; }
+
+.btn, .form-control, .custom-select {
+  height: 45px; }
+
+.custom-select:active, .custom-select:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: #000; }
+
+.btn {
+  border: none;
+  border-radius: 0;
+  font-size: 12px;
+  letter-spacing: .2rem;
+  text-transform: uppercase; }
+  .btn.btn-primary {
+    background: #35477d;
+    color: #fff;
+    padding: 15px 20px; }
+  .btn:hover {
+    color: #fff; }
+  .btn:active, .btn:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+
+.contact-wrap {
+  -webkit-box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.2); }
+  .contact-wrap .col-form-label {
+    font-size: 22px;
+    color: black;
+    margin: 0 0 10px 0;
+    display: inline-block;
+    padding: 0; }
+  .contact-wrap .form, .contact-wrap .contact-info {
+    padding: 40px; }
+  .contact-wrap .contact-info {
+    color: rgba(255, 255, 255, 0.5); }
+    .contact-wrap .contact-info ul li {
+      margin-bottom: 15px;
+      color: rgba(255, 255, 255, 0.5); }
+      .contact-wrap .contact-info ul li .wrap-icon {
+        font-size: 20px;
+        color: #fff;
+        margin-top: 5px; }
+  .contact-wrap .form {
+    background: #fff; }
+    .contact-wrap .form h3 {
+      color: #35477d;
+      font-size: 35px;
+      margin-bottom: 30px; 
+      font-family: 'PT Serif', serif;}
+  .contact-wrap .contact-info {
+    background: #35477d; }
+    .contact-wrap .contact-info h3 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 30px; 
+}
+
+label.error {
+  font-size: 12px;
+  color: red; }
+
+#message {
+  resize: vertical; }
+
+#form-message-warning, #form-message-success {
+  display: none; }
+
+#form-message-warning {
+  color: #B90B0B; }
+
+#form-message-success {
+  color: #55A44E;
+  font-size: 18px;
+  font-weight: bold; }
+
+.submitting {
+  float: left;
+  width: 100%;
+  padding: 10px 0;
+  display: none;
+  font-weight: bold;
+  font-size: 12px;
+  color: #000; }
+
+  img{
+    width: 370px;
+    margin-left: -40px;
+    height: 600px;
+  }
+    </style>
+  </head>
+  <body>
+  
+<form method="post">
+    {% csrf_token %}
+  <div class="content">
+    
+    <div class="container">
+      <div class="row align-items-stretch no-gutters contact-wrap">
+        <div class="col-md-8">
+          <div class="form h-100">
+            <h3>Enter Details of cause for Fundrasing</h3>
+            <form class="mb-5" method="post" id="contactForm" name="contactForm">
+              <div class="row">
+                <div class="col-md-6 form-group mb-5">
+                  <label for="" class="col-form-label">Name</label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Name of Person/Organisation">
+                </div>
+                <div class="col-md-6 form-group mb-5">
+                  <label for="" class="col-form-label">Image</label>
+                  <input type="file" class="form-control" name="image" id="file" enctype="multipart/form-data">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 form-group mb-5">
+                  <label for="" class="col-form-label">Amount(INR)</label>
+                  <input type="text" class="form-control" name="amount" id="amount"  placeholder="Enter amount to be raised">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-5">
+                  <label for="message" class="col-form-label">Description</label>
+                  <textarea class="form-control" name="message" id="message"cols="30" rows="4"  placeholder="Describe the problem for which fund is raised"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <input type="submit" value="Confirm" class="btn btn-primary rounded-0 py-2 px-4">
+                  <span class="submitting"></span>
+                </div>
+              </div>
+            </form>
+
+            <div id="form-message-warning mt-4"></div> 
+            <div id="form-message-success">
+              Your message was sent, thank you!
+            </div>
+
+          </div>
+        </div>
+      </form>   
+        <div class="col-md-4">
+          <div class="contact-info h-100">
+            <!-- <h3>Contact Information</h3>
+            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, magnam!</p>
+            <ul class="list-unstyled">
+              <li class="d-flex">
+                <span class="wrap-icon icon-room mr-3"></span>
+                <span class="text">9757 Aspen Lane South Richmond Hill, NY 11419</span>
+              </li>
+              <li class="d-flex">
+                <span class="wrap-icon icon-phone mr-3"></span>
+                <span class="text">+1 (291) 939 9321</span>
+              </li>
+              <li class="d-flex">
+                <span class="wrap-icon icon-envelope mr-3"></span>
+                <span class="text">info@mywebsite.com</span>
+              </li>
+            </ul> -->
+            <!-- <img src="./images/4934035.jpg" alt=""> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+    
+    
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script>
+
+  </body>
+</html>
