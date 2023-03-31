@@ -392,23 +392,53 @@
   <hr class="hr">
 
   <ul class="cards" id="blur">
-    {% for a,b in payments.items %}
+    {% comment %} {% for a,b in payments.items %}
+
     <li class="cards__item">
       <div class="card">
-        <div> <img src="/media/images/{{ fund_data.image }}" alt="{{fund_data.image}}"></div>
+        <div> <img src="/media/images/{{ fund.image }}" alt="{{fund.image}}"></div>
         <div class="card__content">
           <a href="#" style="text-decoration: none; color: grey;" onclick="togglePopup1()">
             <div class="card__title">{{b}}/{{a}}</div>
-            <div class="card__title">{{fund_data.name}}</div>
-            <p class="card__text">{{fund_data.message}}
+            <div class="card__title">{{fund.name}}</div>
+            <p class="card__text">{{fund.message}}
             </p>
           </a>
           <button class="btn btn--block card__btn"><a href="/payment">Payment</a></button>
         </div>
       </div>
-
     </li>
+
+    {% endfor %} {% endcomment %}
+
+        {% for patientname,payment_info in payments.items %}
+
+    <li class="cards__item">
+      <div class="card">
+        
+        <div class="card__content">
+          <a href="#" style="text-decoration: none; color: grey;" onclick="togglePopup1()">
+             <ul>
+            {% for payment in payment_info.payments %}
+             <div> <img src="/media/images/{{ payment.0 }}" alt="{{payment.0}}"></div> <li> {{ payment.2 }}</li>
+              <div class="card__title">{{ payment_info.total_amount }}/{{ payment.1 }}
+                
+            </div>
+            {% empty %}
+              <li>No payments found.</li>
+            {% endfor %}
+          </ul>
+            
+         
+          </a>
+          <button class="btn btn--block card__btn"><a href="/payment">Payment</a></button>
+        </div>
+      </div>
+    </li>
+
     {% endfor %}
+
+   
 
     {% comment %} <li class="cards__item">
       <div class="card">

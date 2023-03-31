@@ -210,9 +210,16 @@ def fundraiser(request):
     # payment=list(Payment_model.objects.all())
     patient_to_payment={}
     
+    # for patientname in Patient_Model.objects.all():
+    #     patient_to_payment[patientname.name]=sum([a.amount for a in list(Payment_model.objects.all().filter(name=patientname.name))])
+    # return render(request,"fundraiser.html",{'payments':patient_to_payment})
+
+    patient_to_payment = {}
     for patientname in Patient_Model.objects.all():
-        patient_to_payment[patientname.name]=sum([a.amount for a in list(Payment_model.objects.all().filter(name=patientname.name))])
-    return render(request,"fundraiser.html",{'payments':patient_to_payment,'fund':fundraiser_data})
+        payments = [(a.image, a.amount_pat, a.message) for a in Patient_Model.objects.filter(name=patientname.name)]
+        total_amount = sum([a.amount for a in Payment_model.objects.filter(name=patientname.name)])
+        patient_to_payment[patientname.name] = {'payments': payments, 'total_amount': total_amount}
+    return render(request, "fundraiser.html", {'payments': patient_to_payment})
 
 
 def patien(request):
