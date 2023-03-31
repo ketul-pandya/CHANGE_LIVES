@@ -7,6 +7,7 @@ from django.conf import settings
 import stripe
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
+from django.core.mail import send_mail
 
 # Create your views here.
 def index(request):
@@ -142,7 +143,7 @@ def registrationn(request):
     return render(request,'registration.html')
     
     
-    
+
 def payment(request):
     stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
@@ -152,6 +153,9 @@ def payment(request):
             amount_payment=request.POST.get('amount_pay')
             email_payment=request.POST.get('email')
             full_name_payment=request.POST.get('full_name')
+            
+            if amount>int(999999):
+                return HttpResponse("please enter the amount less than 999999.99")
             
             paymentt_gateway=Payment_model(amount=amount_payment,email=email_payment,name=full_name_payment)
             
@@ -214,10 +218,13 @@ def fundraiser(request):
     #     patient_to_payment[patientname.name]=sum([a.amount for a in list(Payment_model.objects.all().filter(name=patientname.name))])
     # return render(request,"fundraiser.html",{'payments':patient_to_payment})
 
-    patient_to_payment = {}
     for patientname in Patient_Model.objects.all():
         payments = [(a.image, a.amount_pat, a.message) for a in Patient_Model.objects.filter(name=patientname.name)]
         total_amount = sum([a.amount for a in Payment_model.objects.filter(name=patientname.name)])
+        # if total_amount>patientname.amount_pat:
+        #     total_amount=total_amount-patientname.amount_pat
+        #     return redirect('404')
+        # else:
         patient_to_payment[patientname.name] = {'payments': payments, 'total_amount': total_amount}
     return render(request, "fundraiser.html", {'payments': patient_to_payment})
 

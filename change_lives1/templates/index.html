@@ -95,12 +95,12 @@
           <li class="nav-item">
             <a class="nav-link " aria-current="page" href="/fundraiser">Fundraisers</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">Events</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Shop</a>
-          </li>
+          </li> -->
           {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="/patient">Patient_details</a>
@@ -120,7 +120,7 @@
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-         
+
         {% if user.is_authenticated%}
         <div class="dropdown">
           <button class="dropbtn">Welcome {{request.user}}</button>
@@ -129,9 +129,12 @@
           </div>
         </div>
         {% else %}
-        <ul class="navbar-nav">
+        <li class="navbar-nav">
+          <button class="btn" style="margin-right: 7px;" onclick="toggle()">Sign UP</button>
+        </li>
+        <li class="navbar-nav">
           <button class="btn" onclick="signup_function()">Log In</button>
-        </ul>
+        </li>
 
         {% endif %}
       </div>
@@ -162,24 +165,24 @@
   <!-- Fundraiser heading -->
   <div class="Fundraisers">
     <h1 class="heading1">Fundraisers</h1>
-    <h4 class="heading4">View the fundraisers that are most active right now</h3>
+    <!-- <h4 class="heading4">View the fundraisers that are most active right now</h3> -->
   </div>
 
   <div class="row" id="blur">
     <div class="col-lg-4 col-md-6 col-sm-12 respons">
       <div class="card card1" style="width: 20rem;">
-        <img src="{% static '/images/child2.png'%}" class="card-img-top" alt="...">
+        <img src="{% static '/images/wid6409b5714f8cf.avif'%}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">NGO title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+          <h5 class="card-title">Sahara Foundation</h5>
+          <p class="card-text"> The Sahara Foundation is a non-profit organization dedicated to supporting children with
+            cancer and their families. Their mission is to provide access to quality treatment and care, as well as to
+            raise awareness about childhood cancer.they aim to alleviate some of the burden by providing financial
+            assistance and emotional support.
+
+          </p>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <!-- <li class="list-group-item">A third item</li> -->
-        </ul>
-        {% if user.is_authenticated %}
+
+        <!-- {% if user.is_authenticated %}
         <div class="card-body">
           <button class="btn" id="show-login" onclick="toggle()"><a href="/fundraiser">Payment</a> </button>
         </div>
@@ -187,24 +190,22 @@
         <div class="card-body">
           <button class="btn" id="show-login" onclick="toggle()">Donate</button>
         </div>
-        {% endif %}
+        {% endif %} -->
       </div>
     </div>
 
     <div class="col-lg-4 col-md-6 col-sm-12 respons">
       <div class="card card1" style="width: 20rem;">
-        <img src="{% static '/images/child2.png'%}" class="card-img-top" alt="...">
+        <img src="{% static '/images/2ndpic.jpg'%}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">NGO title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+          <h5 class="card-title">Goonj</h5>
+          <p class="card-text">One of Goonj's signature programs is their Cloth for Work initiative, which encourages
+            individuals and communities to exchange their labor for essential items, such as clothing or other daily
+            necessities. This approach not only helps to address basic needs, but it also fosters a sense of community
+            and encourages self-sufficiency.</p>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <!-- <li class="list-group-item">A third item</li> -->
-        </ul>
-        {% if user.is_authenticated %}
+
+        <!-- {% if user.is_authenticated %}
         <div class="card-body">
           <button class="btn" id="show-login" onclick="toggle()"><a href="/fundraiser">Payment</a> </button>
         </div>
@@ -212,7 +213,7 @@
         <div class="card-body">
           <button class="btn" id="show-login" onclick="toggle()">Donate</button>
         </div>
-        {% endif %}
+        {% endif %} -->
       </div>
     </div>
 
@@ -220,17 +221,15 @@
       <div class="card card1" style="width: 20rem;">
         <img src="{% static '/images/child2.png'%}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">NGO title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+          <h5 class="card-title">Ujjwal Bhavishya</h5>
+          <p class="card-text">Ujwal Bhavishya is an Indian non-profit organization that works towards providing
+            education and healthcare facilities to orphan children. Their aim is to empower these children with quality
+            education and provide them with opportunities to excel in their lives. They also focus on developing life
+            skills and providing emotional support to help these children grow into confident and self-sufficient
+            individuals.</p>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
 
-          <li class="list-group-item">A second item</li>
-          <!-- <li class="list-group-item">A third item</li> -->
-        </ul>
-        {% if user.is_authenticated %}
+        <!-- {% if user.is_authenticated %}
         <div class="card-body">
           <button class="btn" id="show-login" onclick="toggle()"><a href="/fundraiser">Payment</a> </button>
         </div>
@@ -238,7 +237,7 @@
         <div class="card-body">
           <button class="btn" id="show-login" onclick="toggle()">Donate</button>
         </div>
-        {% endif %}
+        {% endif %} -->
       </div>
     </div>
   </div>
@@ -322,25 +321,33 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="{% static '/images/chandler1.png'%}" class="d-block friends" alt="...">
-        <p class="para-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores dolorum dicta
-          temporibus ad laudantium perferendis, repellat eaque optio quisquam blanditiis enim. Cupiditate et voluptas
-          veritatis, quo amet earum quae fugit omnis recusandae hic, officiis facere a, dolorem ab neque nihil pariatur
-          culpa error unde expedita velit dolore consequuntur? Cupiditate unde cum necessitatibus repellendus eveniet
-          nam.</p>
+        <p class="para-text">Kirtan's story is an inspiring example of how community support and fundraising efforts can
+          make a difference in the lives of those struggling with serious health issues.
+
+          Kirtan was suffering from a dangerous disease, which required expensive medical treatment that his family was
+          struggling to afford. Fortunately, his community rallied around him and launched a fundraising campaign to
+          help cover the costs of his treatment.</p>
       </div>
       <div class="carousel-item">
-        <img src="{% static '/images/chandler1.png'%}" class="d-block friends" alt="...">
-        <p class="para-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus est illo tempora.
-          Praesentium labore eligendi atque voluptatibus dolorem, quae eum impedit ducimus vitae qui enim. Deleniti cum
-          quidem omnis optio inventore, eius perspiciatis voluptatum quam sit rem vitae consectetur nihil eum dolor id
-          magni? Repudiandae tempore temporibus delectus laudantium eum ex, placeat non esse distinctio!</p>
+        <img src="{% static '/images/rachel1.png'%}" class="d-block friends" alt="...">
+        <p class="para-text">After losing both of her parents in a tragic accident, Riya was left without any financial
+          support to continue her education. Recognizing the importance of education and the challenges that Riya was
+          facing, her community rallied together to launch a fundraising campaign to support her education.The
+          community's efforts not only provided financial support for Riya but also demonstrated the power of coming
+          together to support those in need. The outpouring of support provided emotional support for Riya during this
+          difficult time, giving her a sense of hope and optimism for the future.</p>
       </div>
       <div class="carousel-item">
-        <img src="{% static '/images/chandler1.png'%}" class="d-block friends " alt="...">
-        <p class="para-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet vel nulla pariatur earum
-          asperiores ad iusto atque vitae tempore, vero consequuntur facere reprehenderit? Dolorum possimus eos, libero
-          quisquam cum ad dicta quae, assumenda nulla officiis quas recusandae dolor excepturi provident. Sint tempore
-          reiciendis dolor laboriosam animi ut temporibus harum, fugiat corrupti tempora nam. Eius, voluptate!</p>
+        <img src="{% static '/images/joey1.png'%}" class="d-block friends " alt="...">
+        <p class="para-text">A fund was raised for a boy named Dev to support his education and bright future. Education
+          is a key factor in a child's development and can have a profound impact on their future opportunities and
+          success.
+
+          By raising funds for Dev's education, the community has shown their support and belief in his potential. With
+          access to quality education, Dev will have the opportunity to develop his knowledge, skills, and talents, and
+          pursue his passions and interests.
+
+          Investing in education is not only beneficial for individuals like Dev but also for society as a whole.</p>
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -359,10 +366,10 @@
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <h6>About</h6>
-          <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the upcoming
-            programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code
-            wants to be simple. We will help programmers build up concepts in different programming languages that
-            include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+          <p class="text-justify">Change Lives is a website that aims to empower NGOs and social organizations to make a
+            significant impact on society by providing them with a platform to showcase their work and raise funds for
+            their causes. The website acts as an intermediary between NGOs and potential donors, facilitating donations
+            to a range of causes, including education, healthcare, environment, poverty alleviation, and more.</p>
         </div>
 
         <!-- <div class="col-xs-6 col-md-3">
@@ -377,16 +384,8 @@
               </ul>
             </div> -->
 
-        <div class="col-xs-6 col-md-3">
-          <h6>Quick Links</h6>
-          <ul class="footer-links">
-            <li><a href="http://scanfcode.com/about/">About Us</a></li>
-            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
-          </ul>
-        </div>
+
+
       </div>
       <hr>
     </div>

@@ -417,24 +417,29 @@
       <div class="card">
 
         <div class="card__content">
-          <a href="#" style="text-decoration: none; color: grey;" onclick="togglePopup1()">
-            <ul>
-              {% for payment in payment_info.payments %}
-              <div> <br><img src="/media/images/{{ payment.0 }}" alt="{{payment.0}}"></div> <br>
-              <div style="color:black"> {{patientname}}</div><br>
-              <div class="card__title">{{ payment_info.total_amount }}/{{ payment.1 }}
-                <div>{{ payment.2 }}</div>
-              </div>
-              {% empty %}
-              <li>No payments found.</li>
-              {% endfor %}
-            </ul>
+          <a href="" style="text-decoration: none; color: grey;">
+
+            {% for payment in payment_info.payments %}
+            <div> <br><img src="/media/images/{{ payment.0 }}" alt="{{payment.0}}"></div> <br>
+            <div style="color:black" class="card_title"> {{patientname}}</div><br>
+            <div class="card__title">{{ payment_info.total_amount }}/{{ payment.1 }}
+              <p class="card__text">{{ payment.2 }}</p>
+            </div>
+            {% empty %}
+    <li>No payments found.</li>
+    {% endfor %}
 
 
-          </a>
-          <button class="btn btn--block card__btn"><a href="/payment">Payment</a></button>
-        </div>
-      </div>
+
+    </a>
+    {% if user.is_authenticated %}
+    <button class="btn btn--block card__btn"><a href="/payment">Payment</a></button>
+    {% else %}
+    <button class="btn btn--block card__btn"><a href="/login_of_ngo">Go to Login</a></button>
+
+    {% endif %}
+    </div>
+    </div>
     </li>
 
     {% endfor %}
