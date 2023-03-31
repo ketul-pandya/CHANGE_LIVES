@@ -332,7 +332,7 @@
       }
 
       .cards__item {
-        width: 30%;
+        width: 32%;
       }
     }
 
@@ -392,12 +392,13 @@
   <hr class="hr">
 
   <ul class="cards" id="blur">
-    {% for fund_data in fundraiser_data %}
+    {% for a,b in payments.items %}
     <li class="cards__item">
       <div class="card">
-        <div class="{{fund_data.image}}"></div>
+        <div> <img src="/media/images/{{ fund_data.image }}" alt="{{fund_data.image}}"></div>
         <div class="card__content">
           <a href="#" style="text-decoration: none; color: grey;" onclick="togglePopup1()">
+            <div class="card__title">{{b}}/{{a}}</div>
             <div class="card__title">{{fund_data.name}}</div>
             <p class="card__text">{{fund_data.message}}
             </p>
@@ -407,8 +408,8 @@
       </div>
 
     </li>
-
     {% endfor %}
+
     {% comment %} <li class="cards__item">
       <div class="card">
         <div class="card__image card__image--river"></div>
