@@ -27,7 +27,7 @@ class Contact(models.Model):
 
 # here is ngo model
 class Registration(models.Model):              
-    name=models.CharField(max_length=125)
+    name=models.CharField(max_length=125,unique=True)
     registration_no=models.IntegerField(max_length=10)
     phone_no=models.IntegerField(max_length=10)
     state=models.CharField(max_length=50)

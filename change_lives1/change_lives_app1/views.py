@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
 from django.core.mail import send_mail
 
+
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -82,11 +83,8 @@ def signupp(request):
     return render(request,'index.html')
 
 def success(request):
-    data=Registration.objects.all()
-    context={
-        'data':data,
-    }
-    return render(request,'success.html',context)   
+    
+    return render(request,'success.html')   
         
     
 # old payment method
@@ -142,66 +140,70 @@ def registrationn(request):
         
     return render(request,'registration.html')
     
-    
-
 def payment(request):
     stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
     if request.method == "POST":
-            amount = int(request.POST["amount_pay"]) 
-                #Create customer
-            amount_payment=request.POST.get('amount_pay')
-            email_payment=request.POST.get('email')
-            full_name_payment=request.POST.get('full_name')
+        amount = int(request.POST["amount_pay"]) 
+        #Create customer
+        amount_payment=request.POST.get('amount_pay')
+        email_payment=request.POST.get('email')
+        full_name_payment=request.POST.get('full_name')
             
-            if amount>int(999999):
-                return HttpResponse("please enter the amount less than 999999.99")
+        if amount>int(999999):
+            return HttpResponse("please enter the amount less than 999999.99")
             
-            paymentt_gateway=Payment_model(amount=amount_payment,email=email_payment,name=full_name_payment)
+        paymentt_gateway=Payment_model(amount=amount_payment,email=email_payment,name=full_name_payment)
             
-            try:
-                customer = stripe.Customer.create(
-			                           email=request.POST.get("email"),
-			                           name=request.POST.get("full_name"),
-			                           description="Test donation",
-                                    source=request.POST['stripeToken']
-			                           )
+        try:
+            customer = stripe.Customer.create(
+                email=request.POST.get("email"),
+                name=request.POST.get("full_name"),
+                description="Test donation",
+                source=request.POST['stripeToken']
+            )
 
-            except stripe.error.CardError as e:
-                return HttpResponse("<h1>There was an error charging your card:</h1>"+str(e))     
+        except stripe.error.CardError as e:
+            return HttpResponse("<h1>There was an error charging your card:</h1>"+str(e))     
 
-            except stripe.error.RateLimitError as e:
-                     # handle this e, which could be stripe related, or more generic
-                return HttpResponse("<h1>Rate error!</h1>")
+        except stripe.error.RateLimitError as e:
+            # handle this e, which could be stripe related, or more generic
+            return HttpResponse("<h1>Rate error!</h1>")
 
-            except stripe.error.InvalidRequestError as e:
-                return HttpResponse("<h1>Invalid requestor!</h1>")
+        except stripe.error.InvalidRequestError as e:
+            return HttpResponse("<h1>Invalid requestor!</h1>")
 
-            except stripe.error.AuthenticationError as e:  
-                return HttpResponse("<h1>Invalid API auth!</h1>")
+        except stripe.error.AuthenticationError as e:  
+            return HttpResponse("<h1>Invalid API auth!</h1>")
 
-            except stripe.error.StripeError as e:  
-                return HttpResponse("<h1>Stripe error!</h1>")
+        except stripe.error.StripeError as e:  
+            return HttpResponse("<h1>Stripe error!</h1>")
 
-            except Exception as e:  
-                pass  
+        except Exception as e:  
+            pass  
 
+        #Stripe charge 
+        charge = stripe.PaymentIntent.create(
+            customer=customer,
+            amount=int(amount)*100,
+            currency='inr',
+            description="Test donation"
+        ) 
+        transRetrive = stripe.PaymentIntent.retrieve(
+            charge["id"],
+            api_key="sk_test_51Mn3vTSB9lTxkE9QXNVfmKrpK2Biav5SxinzixgQOgxXjkODLvjCYBiCkhJctdE0G6i3HTU0rPqzcan1GtJiQOUx001bFFtbDl"
+        )
+        charge.save() # Uses the same API Key.
+        paymentt_gateway.save()
 
+        # Send email
+        subject = 'Payment confirmation'
+        message = f'Thank you for your payment of {amount} INR.'
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = [email_payment, 'ayushjluhar@gmail.com']
+        send_mail(subject, message, from_email,recipient_list )
 
-                #Stripe charge 
-            charge = stripe.PaymentIntent.create(
-                       customer=customer,
-			              amount=int(amount)*100,
-			              currency='inr',
-			              description="Test donation"
-                     ) 
-            transRetrive = stripe.PaymentIntent.retrieve(
-                           charge["id"],
-                           api_key="sk_test_51Mn3vTSB9lTxkE9QXNVfmKrpK2Biav5SxinzixgQOgxXjkODLvjCYBiCkhJctdE0G6i3HTU0rPqzcan1GtJiQOUx001bFFtbDl"
-                        )
-            charge.save() # Uses the same API Key.
-            paymentt_gateway.save()
-            return redirect("success")
+        return redirect("success")
 
     return render(request, "p.html")
 
