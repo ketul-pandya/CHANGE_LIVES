@@ -31,7 +31,7 @@ class Registration(models.Model):
     registration_no=models.IntegerField(max_length=10)
     phone_no=models.IntegerField(max_length=10)
     state=models.CharField(max_length=50)
-    document=models.ImageField(upload_to='images')
+    document=models.ImageField(upload_to='images/')
     email=models.CharField(max_length=25)
     password=models.CharField(max_length=25)
     author_name=models.CharField(max_length=100)
@@ -55,7 +55,7 @@ class Payment_model(models.Model):
     
 class Patient_Model(models.Model):             
     name=models.CharField(max_length=25)
-    image=models.ImageField(upload_to='patient_images')
+    image=models.ImageField(upload_to='patient_images/')
     amount_pat=models.IntegerField(max_length=6)
     message=models.CharField(max_length=3000)
     
